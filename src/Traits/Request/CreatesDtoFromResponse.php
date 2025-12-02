@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Saloon\Traits\Request;
 
-use Saloon\Http\Response;
+use Saloon\Contracts\Response;
 
 trait CreatesDtoFromResponse
 {

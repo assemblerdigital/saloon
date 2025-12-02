@@ -8,9 +8,9 @@ use LogicException;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Http\Pool;
 use Saloon\Http\Request;
-use Saloon\Http\Response;
-use GuzzleHttp\Promise\Utils;
 use Saloon\Contracts\PendingRequest;
+use GuzzleHttp\Promise\Utils;
+use Saloon\Contracts\Response;
 use Saloon\Http\Faking\MockClient;
 use GuzzleHttp\Promise\PromiseInterface;
 use Saloon\Exceptions\Request\RequestException;
@@ -196,7 +196,6 @@ trait SendsRequests
         if (! class_exists($pendingRequest) || ! is_a($pendingRequest, PendingRequest::class, true)) {
             throw new InvalidResponseClassException;
         }
-
         return $pendingRequest;
     }
 
@@ -205,7 +204,7 @@ trait SendsRequests
      *
      * @param iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Http\Request>|callable(\Saloon\Http\Connector): iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Http\Request> $requests
      * @param int|callable(int $pendingRequests): (int) $concurrency
-     * @param callable(\Saloon\Http\Response, array-key $key, \GuzzleHttp\Promise\PromiseInterface $poolAggregate): (void)|null $responseHandler
+     * @param callable(\Saloon\Contracts\PendingRequest, array-key $key, \GuzzleHttp\Promise\PromiseInterface $poolAggregate): (void)|null $responseHandler
      * @param callable(mixed $reason, array-key $key, \GuzzleHttp\Promise\PromiseInterface $poolAggregate): (void)|null $exceptionHandler
      */
     public function pool(iterable|callable $requests = [], int|callable $concurrency = 5, callable|null $responseHandler = null, callable|null $exceptionHandler = null): Pool

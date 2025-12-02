@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Saloon\Traits\Responses;
 
-use Saloon\Http\Response;
+use Saloon\Contracts\Response;
 
 /**
  * @phpstan-ignore trait.unused

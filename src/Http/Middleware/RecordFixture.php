@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Saloon\Http\Middleware;
 
-use Saloon\Http\Response;
+use Saloon\Contracts\Response;
 use Saloon\Http\Faking\Fixture;
 use Saloon\Data\RecordedResponse;
 use Saloon\Http\Faking\MockClient;

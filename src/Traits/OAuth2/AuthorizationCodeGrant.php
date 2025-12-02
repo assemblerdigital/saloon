@@ -7,7 +7,7 @@ namespace Saloon\Traits\OAuth2;
 use DateInterval;
 use DateTimeImmutable;
 use Saloon\Http\Request;
-use Saloon\Http\Response;
+use Saloon\Contracts\Response;
 use InvalidArgumentException;
 use Saloon\Helpers\URLHelper;
 use Saloon\Helpers\StringHelpers;
@@ -74,7 +74,7 @@ trait AuthorizationCodeGrant
      *
      * @param callable(TRequest): (void)|null $requestModifier
      *
-     * @return ($returnResponse is true ? \Saloon\Http\Response : \Saloon\Contracts\OAuthAuthenticator)
+     * @return ($returnResponse is true ? \Saloon\Contracts\PendingRequest : \Saloon\Contracts\OAuthAuthenticator)
      *
      * @throws \Saloon\Exceptions\InvalidStateException
      */
@@ -112,7 +112,7 @@ trait AuthorizationCodeGrant
      *
      * @param callable(TRequest): (void)|null $requestModifier
      *
-     * @return ($returnResponse is true ? \Saloon\Http\Response : \Saloon\Contracts\OAuthAuthenticator)
+     * @return ($returnResponse is true ? \Saloon\Contracts\PendingRequest : \Saloon\Contracts\OAuthAuthenticator)
      */
     public function refreshAccessToken(OAuthAuthenticator|string $refreshToken, bool $returnResponse = false, ?callable $requestModifier = null): OAuthAuthenticator|Response
     {

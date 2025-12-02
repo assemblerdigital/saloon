@@ -6,11 +6,11 @@ namespace Saloon\Http\Faking;
 
 use ReflectionClass;
 use Saloon\Http\Request;
-use Saloon\Http\Response;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Connector;
 use Saloon\Helpers\Helpers;
 use Saloon\Helpers\URLHelper;
-use Saloon\Contracts\PendingRequest;
+use Saloon\Contracts\Response;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Saloon\Exceptions\NoMockResponseFoundException;
 
@@ -195,7 +195,7 @@ class MockClient
     /**
      * Get all the recorded responses
      *
-     * @return array<\Saloon\Http\Response>
+     * @return array<\Saloon\Contracts\PendingRequest>
      */
     public function getRecordedResponses(): array
     {

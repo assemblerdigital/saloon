@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Saloon\Traits;
 
+use Saloon\Contracts\Response;
 use Throwable;
-use Saloon\Http\Response;
 
 trait ManagesExceptions
 {

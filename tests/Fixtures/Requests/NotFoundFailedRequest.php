@@ -6,7 +6,7 @@ namespace Saloon\Tests\Fixtures\Requests;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
-use Saloon\Http\Response;
+use Saloon\Contracts\Response;
 use Saloon\Traits\Plugins\AlwaysThrowOnErrors;
 
 class NotFoundFailedRequest extends Request

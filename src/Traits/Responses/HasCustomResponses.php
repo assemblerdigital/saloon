@@ -11,17 +11,24 @@ trait HasCustomResponses
      *
      * When null or an empty string, the response on the sender will be used.
      *
-     * @var class-string<\Saloon\Http\Response>|null
+     * @var class-string<\Saloon\Contracts\Response>|null
      */
     protected ?string $response = null;
 
     /**
      * Resolve the custom response class
      *
-     * @return class-string<\Saloon\Http\Response>|null
+     * @return class-string<\Saloon\Contracts\Response>|null
      */
     public function resolveResponseClass(): ?string
     {
-        return $this->response ?? null;
+        // We are making the assumption that any alternate PendingRequest classes will exist in the same directory,
+        // and namespace as the Connector / Request, and that directory is in the App folder.
+
+        $responseClass = ( str_starts_with(static::class, 'App\\') )
+            ? preg_replace('/(?:Connector|Request)$/', 'Response', static::class)
+            : null;
+
+        return $this->response ?? $responseClass ?? null;
     }
 }

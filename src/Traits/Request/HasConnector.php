@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Saloon\Traits\Request;
 
-use Saloon\Http\Response;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Connector;
 use Saloon\Contracts\Sender;
-use Saloon\Contracts\PendingRequest;
+use Saloon\Contracts\Response;
 use Saloon\Http\Faking\MockClient;
 use GuzzleHttp\Promise\PromiseInterface;
 

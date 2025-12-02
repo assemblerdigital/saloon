@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Saloon\Http\Response;
+use Saloon\Contracts\Response;
 use GuzzleHttp\Promise\Promise;
 use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Faking\MockClient;

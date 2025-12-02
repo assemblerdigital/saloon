@@ -33,9 +33,9 @@ class ArraySender implements Sender
     /**
      * Send the request synchronously
      */
-    public function send(PendingRequest $pendingRequest): \Saloon\Http\Response
+    public function send(PendingRequest $pendingRequest): \Saloon\Contracts\Response
     {
-        /** @var class-string<\Saloon\Http\Response> $responseClass */
+        /** @var class-string<\Saloon\Contracts\Response> $responseClass */
         $responseClass = $pendingRequest->getResponseClass();
 
         return $responseClass::fromPsrResponse(new GuzzleResponse(200, ['X-Fake' => true], 'Default'), $pendingRequest, $pendingRequest->createPsrRequest());

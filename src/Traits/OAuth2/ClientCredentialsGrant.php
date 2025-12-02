@@ -7,7 +7,7 @@ namespace Saloon\Traits\OAuth2;
 use DateInterval;
 use DateTimeImmutable;
 use Saloon\Http\Request;
-use Saloon\Http\Response;
+use Saloon\Contracts\Response;
 use Saloon\Helpers\OAuth2\OAuthConfig;
 use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Http\Auth\AccessTokenAuthenticator;

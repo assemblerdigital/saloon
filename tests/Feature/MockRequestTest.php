@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Saloon\MockConfig;
-use Saloon\Http\Response;
+use Saloon\Contracts\Response;
 use Saloon\Contracts\PendingRequest;
 use League\Flysystem\Filesystem;
 use Saloon\Http\Faking\MockClient;

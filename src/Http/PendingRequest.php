@@ -14,9 +14,9 @@ use Saloon\Http\PendingRequest\MergeDelay;
 use Saloon\Traits\PendingRequest\ManagesPsrRequests;
 use Saloon\Http\PendingRequest\MergeRequestProperties;
 use Saloon\Traits\RequestProperties\HasRequestProperties;
-use Saloon\Contracts\PendingRequest as PendingRequestInterface;
 
-class PendingRequest extends AbstractPendingRequest implements PendingRequestInterface
+
+class PendingRequest extends AbstractPendingRequest
 {
 
     use HasRequestProperties;

@@ -14,7 +14,7 @@ trait HasCustomPendingRequests
     protected ?string $pendingRequest = null;
 
     /**
-     * Resolve the custom response class
+     * Resolve the custom pending response class
      *
      * @return class-string<\Saloon\Contracts\PendingRequest>|null
      */

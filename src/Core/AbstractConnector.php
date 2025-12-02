@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Saloon\Core;
 
+use Saloon\Contracts\Connector;
 use Saloon\Traits\Bootable;
 use Saloon\Traits\Makeable;
 use Saloon\Traits\HasDebugging;
@@ -17,7 +18,7 @@ use Saloon\Traits\RequestProperties\HasTries;
 use Saloon\Traits\Responses\HasCustomResponses;
 use Saloon\Traits\Request\CreatesDtoFromResponse;
 
-abstract class AbstractConnector
+abstract class AbstractConnector implements Connector
 {
     use CreatesDtoFromResponse;
     use AuthenticatesRequests;

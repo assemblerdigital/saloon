@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Saloon\Traits;
 
-use Saloon\Http\Response;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Enums\PipeOrder;
 use Saloon\Helpers\Debugger;
-use Saloon\Contracts\PendingRequest;
+use Saloon\Contracts\Response;
 
 trait HasDebugging
 {
@@ -49,7 +49,7 @@ trait HasDebugging
      *
      * Leave blank for a default debugger (requires symfony/var-dump)
      *
-     * @param callable(\Saloon\Http\Response, \Psr\Http\Message\ResponseInterface): void|null $onResponse
+     * @param callable(\Saloon\Contracts\PendingRequest, \Psr\Http\Message\ResponseInterface): void|null $onResponse
      * @return $this
      */
     public function debugResponse(?callable $onResponse = null, bool $die = false): static

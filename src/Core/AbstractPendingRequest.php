@@ -3,10 +3,10 @@
 namespace Saloon\Core;
 
 use Saloon\Config;
-use Saloon\Helpers\Helpers;
+use Saloon\Contracts\Response;
 use Saloon\Http\Connector;
 use Saloon\Http\Request;
-use Saloon\Http\Response;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Traits\Macroable;
 use Saloon\Traits\Conditionable;
 use Saloon\Traits\HasMockClient;
@@ -24,10 +24,10 @@ use Saloon\Traits\RequestProperties\HasMiddleware;
 use Saloon\Contracts\Authenticator;
 use Saloon\Traits\Auth\AuthenticatesRequests;
 use Saloon\Http\PendingRequest\AuthenticatePendingRequest;
+use Saloon\Contracts\PendingRequest as PendingRequestInterface;
 
 
-
-abstract class AbstractPendingRequest
+abstract class AbstractPendingRequest implements PendingRequestInterface
 {
     use Conditionable;
     use HasMockClient;
@@ -182,14 +182,14 @@ abstract class AbstractPendingRequest
     /**
      * Get the response class
      *
-     * @return class-string<\Saloon\Http\Response>
+     * @return class-string<\Saloon\Contracts\PendingRequest>
      * @throws \Saloon\Exceptions\InvalidResponseClassException
      */
     public function getResponseClass(): string
     {
-        $response = $this->request->resolveResponseClass() ?? $this->connector->resolveResponseClass() ?? Response::class;
+        $response = $this->request->resolveResponseClass() ?? $this->connector->resolveResponseClass() ?? \Saloon\Http\Response::class;
 
-        if (! class_exists($response) || ! Helpers::isSubclassOf($response, Response::class)) {
+        if (! class_exists($response) || ! is_a($response, Response::class, true)) {
             throw new InvalidResponseClassException;
         }
 

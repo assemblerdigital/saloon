@@ -6,11 +6,11 @@ namespace Saloon\Http\Senders;
 
 use Exception;
 use Saloon\Config;
-use Saloon\Http\Response;
+use Saloon\Contracts\PendingRequest;
 use GuzzleHttp\HandlerStack;
 use Saloon\Contracts\HttpSender;
 use GuzzleHttp\RequestOptions;
-use Saloon\Contracts\PendingRequest;
+use Saloon\Contracts\Response;
 use GuzzleHttp\Psr7\HttpFactory;
 use Saloon\Data\FactoryCollection;
 use GuzzleHttp\Client as GuzzleClient;
@@ -182,7 +182,7 @@ class GuzzleSender implements HttpSender
      */
     protected function createResponse(ResponseInterface $psrResponse, PendingRequest $pendingRequest, RequestInterface $psrRequest, ?Exception $exception = null): Response
     {
-        /** @var class-string<\Saloon\Http\Response> $responseClass */
+        /** @var class-string<\Saloon\Contracts\PendingRequest> $responseClass */
         $responseClass = $pendingRequest->getResponseClass();
 
         return $responseClass::fromPsrResponse($psrResponse, $pendingRequest, $psrRequest, $exception);

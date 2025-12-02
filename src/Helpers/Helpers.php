@@ -8,7 +8,7 @@ use Closure;
 use ReflectionClass;
 use Saloon\Http\Request;
 use Saloon\Http\Connector;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 
 /**
  * @internal

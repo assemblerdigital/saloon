@@ -6,7 +6,7 @@ namespace Saloon\Helpers;
 
 use Saloon\Http\Response;
 use Saloon\Enums\PipeOrder;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Contracts\FakeResponse;
 use Saloon\Exceptions\Request\FatalRequestException;
 
@@ -40,7 +40,7 @@ class MiddlewarePipeline
     /**
      * Add a middleware before the request is sent
      *
-     * @param callable(\Saloon\Http\PendingRequest): (\Saloon\Http\PendingRequest|\Saloon\Contracts\FakeResponse|void) $callable
+     * @param callable(\Saloon\Contracts\PendingRequest): (\Saloon\Contracts\PendingRequest|\Saloon\Contracts\FakeResponse|void) $callable
      * @return $this
      */
     public function onRequest(callable $callable, ?string $name = null, ?PipeOrder $order = null): static

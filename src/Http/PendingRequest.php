@@ -30,7 +30,7 @@ use Saloon\Http\PendingRequest\BootConnectorAndRequest;
 use Saloon\Traits\RequestProperties\HasRequestProperties;
 use Saloon\Http\PendingRequest\AuthenticatePendingRequest;
 
-class PendingRequest
+class PendingRequest implements \Saloon\Contracts\PendingRequest
 {
     use AuthenticatesRequests;
     use HasRequestProperties;

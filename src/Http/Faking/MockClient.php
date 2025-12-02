@@ -10,7 +10,7 @@ use Saloon\Http\Response;
 use Saloon\Http\Connector;
 use Saloon\Helpers\Helpers;
 use Saloon\Helpers\URLHelper;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Saloon\Exceptions\NoMockResponseFoundException;
 

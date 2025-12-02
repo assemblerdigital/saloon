@@ -7,7 +7,7 @@ namespace Saloon\Traits\Request;
 use Saloon\Http\Response;
 use Saloon\Http\Connector;
 use Saloon\Contracts\Sender;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Faking\MockClient;
 use GuzzleHttp\Promise\PromiseInterface;
 

@@ -10,7 +10,7 @@ use Saloon\Http\Response;
 use GuzzleHttp\HandlerStack;
 use Saloon\Contracts\Sender;
 use GuzzleHttp\RequestOptions;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use GuzzleHttp\Psr7\HttpFactory;
 use Saloon\Data\FactoryCollection;
 use GuzzleHttp\Client as GuzzleClient;

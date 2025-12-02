@@ -6,7 +6,7 @@ namespace Saloon\Exceptions\Request;
 
 use Throwable;
 use Saloon\Http\Response;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Helpers\StatusCodeHelper;
 use Saloon\Exceptions\SaloonException;
 

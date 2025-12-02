@@ -6,7 +6,7 @@ namespace Saloon\Traits\Connector;
 
 use Throwable;
 use Saloon\Http\Response;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Contracts\FakeResponse;
 use Saloon\Http\Faking\MockResponse;
 use GuzzleHttp\Promise\RejectedPromise;

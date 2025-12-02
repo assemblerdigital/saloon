@@ -6,7 +6,7 @@ namespace Saloon\Traits\Plugins;
 
 use Saloon\Config;
 use GuzzleHttp\RequestOptions;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 
 /**
  * @phpstan-ignore trait.unused

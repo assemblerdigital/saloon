@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Saloon\Traits\Connector;
 
 use LogicException;
+use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Http\Pool;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 use GuzzleHttp\Promise\Utils;
-use GuzzleHttp\Promise\Promise;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Faking\MockClient;
 use GuzzleHttp\Promise\PromiseInterface;
 use Saloon\Exceptions\Request\RequestException;
@@ -178,7 +178,26 @@ trait SendsRequests
      */
     public function createPendingRequest(Request $request, ?MockClient $mockClient = null): PendingRequest
     {
-        return new PendingRequest($this, $request, $mockClient);
+        $pendingRequestClass = $this->getPendingRequestClass($request);
+        return new $pendingRequestClass($this, $request, $mockClient);
+    }
+
+    /**
+     * Get the PendingRequest class
+     *
+     * @return class-string<\Saloon\Contracts\PendingRequest>
+     * @throws \Saloon\Exceptions\InvalidResponseClassException
+     */
+    public function getPendingRequestClass(Request $request): string
+    {
+        // At the moment, $this is the Connector instance, but that doesn't make it very reusable.
+        $pendingRequest = $request->resolvePendingRequestClass() ?? $this->resolvePendingRequestClass() ?? \Saloon\Http\PendingRequest::class;
+
+        if (! class_exists($pendingRequest) || ! is_a($pendingRequest, PendingRequest::class, true)) {
+            throw new InvalidResponseClassException;
+        }
+
+        return $pendingRequest;
     }
 
     /**

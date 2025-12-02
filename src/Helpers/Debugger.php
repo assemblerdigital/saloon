@@ -6,7 +6,7 @@ namespace Saloon\Helpers;
 
 use Closure;
 use Saloon\Http\Response;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\VarDumper\VarDumper;

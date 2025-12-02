@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Saloon\Traits\Body;
 
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 
 /**
  * @phpstan-ignore trait.unused

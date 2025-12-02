@@ -13,6 +13,7 @@ use Saloon\Traits\HandlesPsrRequest;
 use Saloon\Traits\ManagesExceptions;
 use Saloon\Traits\Connector\SendsRequests;
 use Saloon\Traits\Auth\AuthenticatesRequests;
+use Saloon\Traits\PendingRequests\HasCustomPendingRequests;
 use Saloon\Traits\RequestProperties\HasTries;
 use Saloon\Traits\Responses\HasCustomResponses;
 use Saloon\Traits\Request\CreatesDtoFromResponse;
@@ -33,6 +34,7 @@ abstract class Connector
     use Makeable;
     use HasTries;
     use HasDebugging;
+    use HasCustomPendingRequests;
 
     /**
      * Define the base URL of the API.

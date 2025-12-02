@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Saloon\Http;
 
+use Saloon\Contracts\PendingRequest;
 use Throwable;
 use LogicException;
 use SimpleXMLElement;

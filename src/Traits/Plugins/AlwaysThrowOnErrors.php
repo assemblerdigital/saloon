@@ -6,7 +6,7 @@ namespace Saloon\Traits\Plugins;
 
 use Saloon\Http\Response;
 use Saloon\Enums\PipeOrder;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 
 /**
  * @phpstan-ignore trait.unused

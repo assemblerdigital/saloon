@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Saloon\Exceptions;
 
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 
 class NoMockResponseFoundException extends SaloonException
 {

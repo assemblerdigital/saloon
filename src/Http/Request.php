@@ -14,6 +14,7 @@ use Saloon\Traits\HasMockClient;
 use Saloon\Traits\HandlesPsrRequest;
 use Saloon\Traits\ManagesExceptions;
 use Saloon\Traits\Auth\AuthenticatesRequests;
+use Saloon\Traits\PendingRequests\HasCustomPendingRequests;
 use Saloon\Traits\RequestProperties\HasTries;
 use Saloon\Traits\Responses\HasCustomResponses;
 use Saloon\Traits\Request\CreatesDtoFromResponse;
@@ -33,6 +34,7 @@ abstract class Request
     use HasTries;
     use Bootable;
     use Makeable;
+    use HasCustomPendingRequests;
 
     /**
      * Define the HTTP method.

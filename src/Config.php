@@ -6,7 +6,7 @@ namespace Saloon;
 
 use Saloon\Enums\PipeOrder;
 use Saloon\Contracts\Sender;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Senders\GuzzleSender;
 use Saloon\Helpers\MiddlewarePipeline;
 use Saloon\Exceptions\StrayRequestException;

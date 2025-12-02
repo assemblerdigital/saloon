@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Saloon\Http\Auth;
 
 use GuzzleHttp\RequestOptions;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Contracts\Authenticator;
 use Saloon\Http\Senders\GuzzleSender;
 use Saloon\Exceptions\SaloonException;

@@ -7,7 +7,7 @@ namespace Saloon\Http\Faking;
 use Closure;
 use Throwable;
 use Saloon\Traits\Makeable;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Repositories\ArrayStore;
 use Psr\Http\Message\ResponseInterface;
 use Saloon\Contracts\Body\BodyRepository;

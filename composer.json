@@ -33,6 +33,7 @@
         "league/flysystem": "^3.0",
         "pestphp/pest": "^2.36.0 || ^3.8.2 || ^4.1.4",
         "phpstan/phpstan": "^2.1.13",
+        "psy/psysh": "^0.12.15",
         "saloonphp/xml-wrangler": "^1.1",
         "spatie/invade": "^2.1",
         "symfony/dom-crawler": "^6.0 || ^7.0",

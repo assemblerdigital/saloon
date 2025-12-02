@@ -47,7 +47,7 @@ trait HasConnector
     }
 
     /**
-     * Access the HTTP sender
+     * Access the sender
      */
     public function sender(): Sender
     {

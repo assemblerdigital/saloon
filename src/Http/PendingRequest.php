@@ -22,8 +22,6 @@ class PendingRequest extends AbstractPendingRequest implements PendingRequestInt
     use HasRequestProperties;
     use ManagesPsrRequests;
 
-
-
     /**
      * The method the request will use.
      */

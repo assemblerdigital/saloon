@@ -8,7 +8,7 @@ use Exception;
 use Saloon\Config;
 use Saloon\Http\Response;
 use GuzzleHttp\HandlerStack;
-use Saloon\Contracts\Sender;
+use Saloon\Contracts\HttpSender;
 use GuzzleHttp\RequestOptions;
 use Saloon\Contracts\PendingRequest;
 use GuzzleHttp\Psr7\HttpFactory;
@@ -23,7 +23,7 @@ use GuzzleHttp\Exception\TransferException;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Http\Senders\Factories\GuzzleMultipartBodyFactory;
 
-class GuzzleSender implements Sender
+class GuzzleSender implements HttpSender
 {
     /**
      * The Guzzle client.

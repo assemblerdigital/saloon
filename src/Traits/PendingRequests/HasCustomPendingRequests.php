@@ -21,12 +21,12 @@ trait HasCustomPendingRequests
     public function resolvePendingRequestClass(): ?string
     {
         // We are making the assumption that any alternate PendingRequest classes will exist in the same directory,
-        // and namespace, as the Connector class, but not in the base Saloon\Http namespace.
+        // and namespace as the Connector / Request, and that directory is in the App folder.
 
-        $pendingRequestClass = ( ! str_starts_with(static::class, 'Saloon\\Http\\') && ! str_starts_with(static::class, 'Saloon\\Tests\\')  )
-            ? preg_replace('/Connector$/', 'PendingRequest', static::class)
+        $pendingRequestClass = ( str_starts_with(static::class, 'App\\') )
+            ? preg_replace('/(?:Connector|Request)$/', 'PendingRequest', static::class)
             : null;
 
-        return $this->pendingRequest ?? $pendingRequestClass;
+        return $this->pendingRequest ?? $pendingRequestClass ?? null;
     }
 }

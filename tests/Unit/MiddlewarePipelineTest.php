@@ -6,7 +6,7 @@ use Saloon\Data\Pipe;
 use Saloon\Http\Response;
 use Saloon\Enums\PipeOrder;
 use Saloon\Helpers\Pipeline;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use GuzzleHttp\Psr7\HttpFactory;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Saloon\Tests\Fixtures\Mocking;
 
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Faking\MockResponse;
 
 class CallableMockResponse

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 use Saloon\Http\Auth\TokenAuthenticator;

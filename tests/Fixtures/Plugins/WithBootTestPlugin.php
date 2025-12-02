@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Saloon\Tests\Fixtures\Plugins;
 
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 
 trait WithBootTestPlugin
 {

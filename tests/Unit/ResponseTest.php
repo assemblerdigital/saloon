@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use GuzzleHttp\Psr7\Utils;
 use GuzzleHttp\Psr7\Response;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Contracts\ArrayStore;
 use Illuminate\Support\Collection;
 use Saloon\Http\Faking\MockClient;

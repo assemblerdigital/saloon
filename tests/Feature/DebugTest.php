@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Saloon\Http\Response;
 use Saloon\Helpers\Debugger;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 use Psr\Http\Message\RequestInterface;

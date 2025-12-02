@@ -6,7 +6,7 @@ namespace Saloon\Tests\Fixtures\Plugins;
 
 use Saloon\Http\Request;
 use Saloon\Http\Connector;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 

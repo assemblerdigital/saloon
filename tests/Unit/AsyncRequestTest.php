@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Saloon\Http\Response;
 use GuzzleHttp\Promise\Promise;
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 use GuzzleHttp\Promise\PromiseInterface;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Saloon\Http\PendingRequest;
+use Saloon\Contracts\PendingRequest;
 use GuzzleHttp\Psr7\HttpFactory;
 use Saloon\Http\Faking\MockResponse;
 use Psr\Http\Message\RequestInterface;

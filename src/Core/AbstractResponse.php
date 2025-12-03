@@ -67,16 +67,16 @@ abstract class AbstractResponse implements Response
 
     final public function __construct(PendingRequest $pendingRequest, ?Throwable $senderException = null, ?array $args = null)
     {
+        $this->coreBootstrap(...func_get_args());
         $this->bootstrap(...func_get_args());
-        $this->make(...func_get_args());
     }
 
-    private function bootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, ?array $args = null): void
+    private function coreBootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, ?array $args = null): void
     {
         $this->pendingRequest = $pendingRequest;
         $this->senderException = $senderException;
     }
-    abstract public function make(PendingRequest $pendingRequest, ?Throwable $senderException = null, ?array $args = null): void;
+    abstract public function bootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, ?array $args = null): void;
 
     /**
      * Get the pending request that created the response.

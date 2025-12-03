@@ -46,7 +46,8 @@
         "illuminate/collections": "Required for the response collect() method.",
         "symfony/dom-crawler": "Required for the response dom() method.",
         "saloonphp/xml-wrangler": "Required for the response xmlReader() method.",
-        "symfony/var-dumper": "Required for default debugging drivers."
+        "symfony/var-dumper": "Required for default debugging drivers.",
+        "illuminate/process": "Required for the Shell Connector."
     },
     "minimum-stability": "stable",
     "autoload": {

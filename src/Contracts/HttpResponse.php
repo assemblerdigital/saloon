@@ -10,5 +10,5 @@ use Throwable;
 
 interface HttpResponse extends Response
 {
-    public function make(\Saloon\Http\PendingRequest $pendingRequest, ?Throwable $senderException, ?array $args = null): void;
+
 }

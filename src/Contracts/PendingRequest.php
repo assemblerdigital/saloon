@@ -11,4 +11,5 @@ interface PendingRequest
     //public function getPendingRequest(): PendingRequest;
 
     public function getMockClient(): ?MockClient;
+
 }

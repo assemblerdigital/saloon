@@ -6,7 +6,6 @@ use Saloon\Config;
 use Saloon\Contracts\Response;
 use Saloon\Contracts\Connector;
 use Saloon\Contracts\Request;
-use Saloon\Contracts\PendingRequest;
 use Saloon\Traits\Macroable;
 use Saloon\Traits\Conditionable;
 use Saloon\Traits\HasMockClient;
@@ -33,7 +32,7 @@ abstract class AbstractPendingRequest implements PendingRequestInterface
     use HasMockClient;
     use Macroable;
     use AuthenticatesRequests;
-    use HasMiddleware; // I'm attempting to extract the Middleware component back into the Core namespace to see if it can be more generally useful.
+    use HasMiddleware; // I'm attempting to extract the Middleware component back into the Core namespace to see if it will work outside of the Psr context
 
     /**
      * The connector making the request.
@@ -52,8 +51,8 @@ abstract class AbstractPendingRequest implements PendingRequestInterface
 
     final public function __construct(Connector $connector, Request $request, ?MockClient $mockClient = null)
     {
+        $this->coreBootstrap(...func_get_args());
         $this->bootstrap(...func_get_args());
-        $this->make(...func_get_args());
 
         // Finally, we will execute the request middleware pipeline which will
         // process the middleware in the order we added it.
@@ -61,7 +60,11 @@ abstract class AbstractPendingRequest implements PendingRequestInterface
         $this->middleware()->executeRequestPipeline($this);
     }
 
-    private function bootstrap(Connector $connector, Request $request, ?MockClient $mockClient = null): void
+    /**
+     * Bootstrap the PendingRequest. I'm not using the Bootable trait as its only parameter is a PendingRequest,
+     * and I'm not using the Makeable trait as it returns a new instance, which I don't want here.
+     */
+    private function coreBootstrap(Connector $connector, Request $request, ?MockClient $mockClient = null): void
     {
         $this->connector = $connector;
         $this->request = $request;
@@ -94,11 +97,9 @@ abstract class AbstractPendingRequest implements PendingRequestInterface
             ->onRequest(new ValidateProperties, 'validateProperties')
             ->onRequest(new DelayMiddleware, 'delayMiddleware');
 
-
-
     }
 
-    abstract public function make(Connector $connector, Request $request, ?MockClient $mockClient = null): void;
+    abstract public function bootstrap(Connector $connector, Request $request, ?MockClient $mockClient = null): void;
 
     /**
      * Get the request.

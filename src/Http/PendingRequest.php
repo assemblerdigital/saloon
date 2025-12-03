@@ -47,7 +47,7 @@ class PendingRequest extends AbstractPendingRequest
     /**
      * Build up the request payload.
      */
-    public function make(Connector $connector, Request $request, ?MockClient $mockClient = null): void
+    public function bootstrap(Connector $connector, Request $request, ?MockClient $mockClient = null): void
     {
         // Let's start by getting our PSR factory collection. This object contains all the
         // relevant factories for creating PSR-7 requests as well as URIs and streams.

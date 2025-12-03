@@ -5,9 +5,7 @@ namespace Saloon\Traits\PendingRequests;
 trait HasCustomPendingRequests
 {
     /**
-     * Specify a default response.
-     *
-     * When null or an empty string, the response on the sender will be used.
+     * Specify a default PendingResponse.
      *
      * @var class-string<\Saloon\Contracts\PendingRequest>|null
      */
@@ -27,6 +25,6 @@ trait HasCustomPendingRequests
             ? preg_replace('/(?:Connector|Request)$/', 'PendingRequest', static::class)
             : null;
 
-        return $this->pendingRequest ?? $pendingRequestClass ?? null;
+        return $this->pendingRequest ?? ($pendingRequestClass && class_exists($pendingRequestClass) ? $pendingRequestClass : null);
     }
 }

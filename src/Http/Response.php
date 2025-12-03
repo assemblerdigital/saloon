@@ -32,9 +32,9 @@ class Response extends AbstractResponse implements HttpResponse
     /**
      * Create a new response instance.
      */
-    public function bootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, ?array $args = null): void
+    public function bootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$args): void
     {
-        list ($this->psrResponse, $this->psrRequest) = $args;
+        [$this->psrResponse, $this->psrRequest] = $args;
     }
 
     /**
@@ -42,7 +42,7 @@ class Response extends AbstractResponse implements HttpResponse
      */
     public static function fromPsrResponse(ResponseInterface $psrResponse, PendingRequest $pendingRequest, RequestInterface $psrRequest, ?Throwable $senderException = null): static
     {
-        return new static($pendingRequest, $senderException, [$psrResponse, $psrRequest]);
+        return new static($pendingRequest, $senderException, $psrResponse, $psrRequest);
     }
 
     /**

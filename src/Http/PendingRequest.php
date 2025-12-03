@@ -9,8 +9,8 @@ use Saloon\Enums\Method;
 use Saloon\Contracts\Request;
 use Saloon\Contracts\Connector;
 use Saloon\Helpers\URLHelper;
-use Saloon\Contracts\Body\BodyRepository;
 use Saloon\Http\Faking\MockClient;
+use Saloon\Http\Middleware\ValidateProperties;
 use Saloon\Http\PendingRequest\MergeBody;
 use Saloon\Http\PendingRequest\MergeDelay;
 use Saloon\Traits\PendingRequest\ManagesPsrRequests;
@@ -34,10 +34,6 @@ class PendingRequest extends AbstractPendingRequest
      */
     protected string $url;
 
-    /**
-     * The body of the request.
-     */
-    protected ?BodyRepository $body = null;
 
     /**
      * Determine if the pending request is asynchronous - this is a PSR feature.
@@ -64,6 +60,9 @@ class PendingRequest extends AbstractPendingRequest
             ->tap(new MergeRequestProperties)
             ->tap(new MergeBody)
             ->tap(new MergeDelay);
+
+        $this->middleware()
+            ->onRequest(new ValidateProperties, 'validateProperties');
 
     }
 
@@ -109,27 +108,6 @@ class PendingRequest extends AbstractPendingRequest
 
         return $this;
     }
-
-    /**
-     * Retrieve the body on the instance
-     */
-    public function body(): ?BodyRepository
-    {
-        return $this->body;
-    }
-
-    /**
-     * Set the body repository
-     *
-     * @return $this
-     */
-    public function setBody(?BodyRepository $body): static
-    {
-        $this->body = $body;
-
-        return $this;
-    }
-
 
     /**
      * Check if the request is asynchronous

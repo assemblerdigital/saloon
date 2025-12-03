@@ -65,18 +65,18 @@ abstract class AbstractResponse implements Response
      */
     protected ?FakeResponse $fakeResponse = null;
 
-    final public function __construct(PendingRequest $pendingRequest, ?Throwable $senderException = null, ?array $args = null)
+    final public function __construct(PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$args)
     {
         $this->coreBootstrap(...func_get_args());
         $this->bootstrap(...func_get_args());
     }
 
-    private function coreBootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, ?array $args = null): void
+    private function coreBootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$args): void
     {
         $this->pendingRequest = $pendingRequest;
         $this->senderException = $senderException;
     }
-    abstract public function bootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, ?array $args = null): void;
+    abstract public function bootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$args): void;
 
     /**
      * Get the pending request that created the response.

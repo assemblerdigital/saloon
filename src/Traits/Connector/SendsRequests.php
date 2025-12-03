@@ -194,7 +194,7 @@ trait SendsRequests
         $pendingRequest = $request->resolvePendingRequestClass() ?? $this->resolvePendingRequestClass() ?? \Saloon\Http\PendingRequest::class;
 
         if (! class_exists($pendingRequest) || ! is_a($pendingRequest, PendingRequest::class, true)) {
-            throw new InvalidResponseClassException;
+            throw new InvalidResponseClassException("Pending request class: " . $pendingRequest);
         }
         return $pendingRequest;
     }

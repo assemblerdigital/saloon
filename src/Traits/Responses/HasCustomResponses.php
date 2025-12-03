@@ -29,6 +29,6 @@ trait HasCustomResponses
             ? preg_replace('/(?:Connector|Request)$/', 'Response', static::class)
             : null;
 
-        return $this->response ?? $responseClass ?? null;
+        return $this->response ?? ($responseClass && class_exists($responseClass) ? $responseClass : null);
     }
 }

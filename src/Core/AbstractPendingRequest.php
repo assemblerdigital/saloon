@@ -3,6 +3,7 @@
 namespace Saloon\Core;
 
 use Saloon\Config;
+use Saloon\Contracts\Body\BodyRepository;
 use Saloon\Contracts\Response;
 use Saloon\Contracts\Connector;
 use Saloon\Contracts\Request;
@@ -13,11 +14,11 @@ use Saloon\Contracts\FakeResponse;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Middleware\DelayMiddleware;
 use Saloon\Http\PendingRequest\BootPlugins;
-use Saloon\Http\Middleware\ValidateProperties;
 use Saloon\Http\Middleware\DetermineMockResponse;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Http\PendingRequest\BootConnectorAndRequest;
+use Saloon\Traits\RequestProperties\HasDelay;
 use Saloon\Traits\RequestProperties\HasMiddleware;
 // I have moved the authentication stuff back into the base class, but I'm not sure if this is the right move long-term.
 use Saloon\Contracts\Authenticator;
@@ -33,6 +34,8 @@ abstract class AbstractPendingRequest implements PendingRequestInterface
     use Macroable;
     use AuthenticatesRequests;
     use HasMiddleware; // I'm attempting to extract the Middleware component back into the Core namespace to see if it will work outside of the Psr context
+    use HasDelay; // There's only two default middleware, one requires headers on the request object (which I'm considering http specific for now), and the other is
+                  // DelayMiddleware which requires the HasDelay trait. This normally lives under HasRequestProperties, but I'm moving it here for now.
 
     /**
      * The connector making the request.
@@ -43,6 +46,11 @@ abstract class AbstractPendingRequest implements PendingRequestInterface
      * The request used by the instance.
      */
     protected Request $request;
+
+    /**
+     * The body of the request. // TODO: Are we going to try and recreate the BodyRepository functionality for other request types? I can see it being useful.
+     */
+    protected ?BodyRepository $body = null;
 
     /**
      * The simulated response.
@@ -90,11 +98,9 @@ abstract class AbstractPendingRequest implements PendingRequestInterface
             ->tap(new AuthenticatePendingRequest)
             ->tap(new BootConnectorAndRequest);
 
-        // Now, we'll register some default middleware for validating the request properties and
-        // running the delay that should have been set by the user.
+        // Now, we'll register some default middleware
 
         $this->middleware()
-            ->onRequest(new ValidateProperties, 'validateProperties')
             ->onRequest(new DelayMiddleware, 'delayMiddleware');
 
     }
@@ -191,10 +197,30 @@ abstract class AbstractPendingRequest implements PendingRequestInterface
         $response = $this->request->resolveResponseClass() ?? $this->connector->resolveResponseClass() ?? \Saloon\Http\Response::class;
 
         if (! class_exists($response) || ! is_a($response, Response::class, true)) {
-            throw new InvalidResponseClassException;
+            throw new InvalidResponseClassException("Response: " . $response);
         }
 
         return $response;
+    }
+
+    /**
+     * Retrieve the body on the instance
+     */
+    public function body(): ?BodyRepository
+    {
+        return $this->body;
+    }
+
+    /**
+     * Set the body repository
+     *
+     * @return $this
+     */
+    public function setBody(?BodyRepository $body): static
+    {
+        $this->body = $body;
+
+        return $this;
     }
 
 

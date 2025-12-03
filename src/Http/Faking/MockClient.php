@@ -7,7 +7,7 @@ namespace Saloon\Http\Faking;
 use ReflectionClass;
 use Saloon\Contracts\Request;
 use Saloon\Contracts\PendingRequest;
-use Saloon\Http\Connector;
+use Saloon\Contracts\Connector;
 use Saloon\Helpers\Helpers;
 use Saloon\Helpers\URLHelper;
 use Saloon\Contracts\Response;

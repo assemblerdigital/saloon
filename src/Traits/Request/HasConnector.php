@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Saloon\Traits\Request;
 
 use Saloon\Contracts\PendingRequest;
-use Saloon\Http\Connector;
+use Saloon\Contracts\Connector;
 use Saloon\Contracts\Sender;
 use Saloon\Contracts\Response;
 use Saloon\Http\Faking\MockClient;

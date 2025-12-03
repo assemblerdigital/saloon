@@ -7,6 +7,7 @@ namespace Saloon\Http;
 use Saloon\Core\AbstractPendingRequest;
 use Saloon\Enums\Method;
 use Saloon\Contracts\Request;
+use Saloon\Contracts\Connector;
 use Saloon\Helpers\URLHelper;
 use Saloon\Contracts\Body\BodyRepository;
 use Saloon\Http\Faking\MockClient;

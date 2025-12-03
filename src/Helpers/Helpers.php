@@ -7,7 +7,7 @@ namespace Saloon\Helpers;
 use Closure;
 use ReflectionClass;
 use Saloon\Contracts\Request;
-use Saloon\Http\Connector;
+use Saloon\Contracts\Connector;
 use Saloon\Contracts\PendingRequest;
 
 /**

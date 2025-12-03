@@ -4,7 +4,7 @@ namespace Saloon\Core;
 
 use Saloon\Config;
 use Saloon\Contracts\Response;
-use Saloon\Http\Connector;
+use Saloon\Contracts\Connector;
 use Saloon\Contracts\Request;
 use Saloon\Contracts\PendingRequest;
 use Saloon\Traits\Macroable;

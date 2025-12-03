@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Saloon\Core;
 
 
+use Saloon\Contracts\Request;
 use Saloon\Traits\Auth\AuthenticatesRequests; // Leaving this in the base class, might end up moving to child classes later
 use Saloon\Traits\Bootable;
 use Saloon\Traits\Conditionable;
@@ -18,7 +19,7 @@ use Saloon\Traits\Request\CreatesDtoFromResponse;
 use Saloon\Traits\RequestProperties\HasTries;
 use Saloon\Traits\Responses\HasCustomResponses;
 
-abstract class AbstractRequest
+abstract class AbstractRequest implements Request
 {
     use CreatesDtoFromResponse;
     use HasCustomResponses;

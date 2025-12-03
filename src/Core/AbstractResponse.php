@@ -12,7 +12,7 @@ use Saloon\Helpers\ArrayHelpers;
 use Saloon\Helpers\ObjectHelpers;
 use Saloon\Helpers\RequestExceptionHelper;
 use Saloon\Http\Connector;
-use Saloon\Http\Request;
+use Saloon\Contracts\Request;
 use Saloon\Traits\Macroable;
 use Saloon\XmlWrangler\XmlReader;
 use SimpleXMLElement;

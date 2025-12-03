@@ -6,7 +6,7 @@ namespace Saloon\Traits\OAuth2;
 
 use DateInterval;
 use DateTimeImmutable;
-use Saloon\Http\Request;
+use Saloon\Contracts\Request;
 use Saloon\Contracts\Response;
 use InvalidArgumentException;
 use Saloon\Helpers\URLHelper;
@@ -70,7 +70,7 @@ trait AuthorizationCodeGrant
     /**
      * Get the access token.
      *
-     * @template TRequest of \Saloon\Http\Request
+     * @template TRequest of \Saloon\Contracts\Request
      *
      * @param callable(TRequest): (void)|null $requestModifier
      *
@@ -108,7 +108,7 @@ trait AuthorizationCodeGrant
     /**
      * Refresh the access token.
      *
-     * @template TRequest of \Saloon\Http\Request
+     * @template TRequest of \Saloon\Contracts\Request
      *
      * @param callable(TRequest): (void)|null $requestModifier
      *
@@ -177,7 +177,7 @@ trait AuthorizationCodeGrant
     /**
      * Get the authenticated user.
      *
-     * @template TRequest of \Saloon\Http\Request
+     * @template TRequest of \Saloon\Contracts\Request
      *
      * @param callable(TRequest): (void)|null $requestModifier
      */

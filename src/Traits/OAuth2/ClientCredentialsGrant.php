@@ -6,7 +6,7 @@ namespace Saloon\Traits\OAuth2;
 
 use DateInterval;
 use DateTimeImmutable;
-use Saloon\Http\Request;
+use Saloon\Contracts\Request;
 use Saloon\Contracts\Response;
 use Saloon\Helpers\OAuth2\OAuthConfig;
 use Saloon\Contracts\OAuthAuthenticator;
@@ -23,7 +23,7 @@ trait ClientCredentialsGrant
     /**
      * Get the access token
      *
-     * @template TRequest of \Saloon\Http\Request
+     * @template TRequest of \Saloon\Contracts\Request
      *
      * @param array<string> $scopes
      * @param callable(TRequest): (void)|null $requestModifier

@@ -7,7 +7,7 @@ namespace Saloon\Traits\Connector;
 use LogicException;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Http\Pool;
-use Saloon\Http\Request;
+use Saloon\Contracts\Request;
 use Saloon\Contracts\PendingRequest;
 use GuzzleHttp\Promise\Utils;
 use Saloon\Contracts\Response;
@@ -24,7 +24,7 @@ trait SendsRequests
     /**
      * Send a request synchronously
      *
-     * @param callable(\Throwable, \Saloon\Http\Request): (bool)|null $handleRetry
+     * @param callable(\Throwable, \Saloon\Contracts\Request): (bool)|null $handleRetry
      */
     public function send(Request $request, ?MockClient $mockClient = null, ?callable $handleRetry = null): Response
     {
@@ -161,7 +161,7 @@ trait SendsRequests
      *
      * @deprecated This method will be removed in Saloon v4. Please refer to the documentation to see connector or request-based retry functionality.
      *
-     * @param callable(\Throwable, \Saloon\Http\Request): (bool)|null $handleRetry
+     * @param callable(\Throwable, \Saloon\Contracts\Request): (bool)|null $handleRetry
      */
     public function sendAndRetry(Request $request, int $tries, int $interval = 0, ?callable $handleRetry = null, bool $throw = true, ?MockClient $mockClient = null, bool $useExponentialBackoff = false): Response
     {
@@ -202,7 +202,7 @@ trait SendsRequests
     /**
      * Create a request pool
      *
-     * @param iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Http\Request>|callable(\Saloon\Http\Connector): iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Http\Request> $requests
+     * @param iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Contracts\Request>|callable(\Saloon\Http\Connector): iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Contracts\Request> $requests
      * @param int|callable(int $pendingRequests): (int) $concurrency
      * @param callable(\Saloon\Contracts\PendingRequest, array-key $key, \GuzzleHttp\Promise\PromiseInterface $poolAggregate): (void)|null $responseHandler
      * @param callable(mixed $reason, array-key $key, \GuzzleHttp\Promise\PromiseInterface $poolAggregate): (void)|null $exceptionHandler

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Saloon\Tests\Fixtures\Connectors;
 
 use Closure;
-use Saloon\Http\Request as RequestContract;
+use Saloon\Contracts\Request as RequestContract;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Exceptions\Request\FatalRequestException;
 

@@ -16,7 +16,7 @@ class Pool
     /**
      * Requests inside the pool
      *
-     * @var iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Http\Request>
+     * @var iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Contracts\Request>
      */
     protected iterable $requests;
 
@@ -51,7 +51,7 @@ class Pool
     /**
      * Constructor
      *
-     * @param iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Http\Request>|callable(\Saloon\Contracts\Connector): iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Http\Request> $requests
+     * @param iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Contracts\Request>|callable(\Saloon\Contracts\Connector): iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Contracts\Request> $requests
      * @param int|callable(int $pendingRequests): (int) $concurrency
      * @param callable(\Saloon\Contracts\PendingRequest, array-key $key, \GuzzleHttp\Promise\PromiseInterface $poolAggregate): (void)|null $responseHandler
      * @param callable(mixed $reason, array-key $key, \GuzzleHttp\Promise\PromiseInterface $poolAggregate): (void)|null $exceptionHandler
@@ -113,7 +113,7 @@ class Pool
     /**
      * Set the requests
      *
-     * @param iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Http\Request>|callable(\Saloon\Contracts\Connector): iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Http\Request> $requests
+     * @param iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Contracts\Request>|callable(\Saloon\Contracts\Connector): iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Contracts\Request> $requests
      * @return $this
      */
     public function setRequests(iterable|callable $requests): static
@@ -134,7 +134,7 @@ class Pool
     /**
      * Get the request generator
      *
-     * @return iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Http\Request>
+     * @return iterable<\GuzzleHttp\Promise\PromiseInterface|\Saloon\Contracts\Request>
      */
     public function getRequests(): iterable
     {

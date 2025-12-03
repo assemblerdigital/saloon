@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Saloon\Http\Faking;
 
 use ReflectionClass;
-use Saloon\Http\Request;
+use Saloon\Contracts\Request;
 use Saloon\Contracts\PendingRequest;
 use Saloon\Http\Connector;
 use Saloon\Helpers\Helpers;

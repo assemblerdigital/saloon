@@ -65,18 +65,21 @@ abstract class AbstractResponse implements Response
      */
     protected ?FakeResponse $fakeResponse = null;
 
-    final public function __construct(PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$args)
+    /**
+     * Create a new response instance. This has had the parameters reordered to make it more reusable across different response types.
+     */
+    final public function __construct(mixed $response, PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$params)
     {
-        $this->coreBootstrap(...func_get_args());
+        $this->coreBootstrap($pendingRequest, $senderException);
         $this->bootstrap(...func_get_args());
     }
 
-    private function coreBootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$args): void
+    private function coreBootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null): void
     {
         $this->pendingRequest = $pendingRequest;
         $this->senderException = $senderException;
     }
-    abstract public function bootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$args): void;
+    abstract public function bootstrap(mixed $response, PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$params): void;
 
     /**
      * Get the pending request that created the response.
@@ -105,11 +108,7 @@ abstract class AbstractResponse implements Response
     /**
      * Get the status code of the response.
      */
-    public function status(): int
-    {
-        //TODO: Implement this whole thing in the base class - I am currently thinking of some sort of response code to http code mapper.
-        return 200;
-    }
+    abstract public function status(): int;
 
     /**
      * Get the original sender exception
@@ -122,12 +121,7 @@ abstract class AbstractResponse implements Response
     /**
      * Get the body of the response as string.
      */
-    public function body(): string
-    {
-        //TODO: We're going to use the "body" as the main response body for any response type. This will either end up an abstract, or
-        // with a baseline implementation here, but will likely be overridden in child classes either way.
-        return 'TODO';
-    }
+    abstract public function body(): string;
 
     /**
      * Cast the response to a DTO.
@@ -262,8 +256,6 @@ abstract class AbstractResponse implements Response
         return Collection::make([$data]);
     }
 
-
-
     /**
      * Parse the HTML or XML body into a Symfony DomCrawler instance.
      *
@@ -279,26 +271,12 @@ abstract class AbstractResponse implements Response
     /**
      * Determine if the request was successful.
      */
-    public function successful(): bool
-    {
-        return $this->status() >= 200 && $this->status() < 300;
-    }
+    abstract public function successful(): bool;
 
     /**
      * Determine if the response code was "OK".
      */
-    public function ok(): bool
-    {
-        return $this->status() === 200;
-    }
-
-    /**
-     * Determine if the response was a redirect.
-     */
-    public function redirect(): bool
-    {
-        return $this->status() >= 300 && $this->status() < 400;
-    }
+    abstract public function ok(): bool;
 
     /**
      * Determine if the response indicates a client or server error occurred.
@@ -320,18 +298,12 @@ abstract class AbstractResponse implements Response
     /**
      * Determine if the response indicates a client error occurred.
      */
-    public function clientError(): bool
-    {
-        return $this->status() >= 400 && $this->status() < 500;
-    }
+    abstract public function clientError(): bool;
 
     /**
      * Determine if the response indicates a server error occurred.
      */
-    public function serverError(): bool
-    {
-        return $this->status() >= 500;
-    }
+    abstract public function serverError(): bool;
 
     /**
      * Execute the given callback if there was a server or client error.

@@ -32,9 +32,10 @@ class Response extends AbstractResponse implements HttpResponse
     /**
      * Create a new response instance.
      */
-    public function bootstrap(PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$args): void
+    public function bootstrap(mixed $response, PendingRequest $pendingRequest, ?Throwable $senderException = null, mixed ...$params): void
     {
-        [$this->psrResponse, $this->psrRequest] = $args;
+        $this->psrResponse = $response;
+        [$this->psrRequest] = $params;
     }
 
     /**
@@ -42,7 +43,7 @@ class Response extends AbstractResponse implements HttpResponse
      */
     public static function fromPsrResponse(ResponseInterface $psrResponse, PendingRequest $pendingRequest, RequestInterface $psrRequest, ?Throwable $senderException = null): static
     {
-        return new static($pendingRequest, $senderException, $psrResponse, $psrRequest);
+        return new static($psrResponse, $pendingRequest, $senderException, $psrRequest);
     }
 
     /**
@@ -109,6 +110,46 @@ class Response extends AbstractResponse implements HttpResponse
     public function status(): int
     {
         return $this->psrResponse->getStatusCode();
+    }
+
+    /**
+     * Determine if the request was successful.
+     */
+    public function successful(): bool
+    {
+        return $this->status() >= 200 && $this->status() < 300;
+    }
+
+    /**
+     * Determine if the response code was "OK".
+     */
+    public function ok(): bool
+    {
+        return $this->status() === 200;
+    }
+
+    /**
+     * Determine if the response was a redirect.
+     */
+    public function redirect(): bool
+    {
+        return $this->status() >= 300 && $this->status() < 400;
+    }
+
+    /**
+     * Determine if the response indicates a client error occurred.
+     */
+    public function clientError(): bool
+    {
+        return $this->status() >= 400 && $this->status() < 500;
+    }
+
+    /**
+     * Determine if the response indicates a server error occurred.
+     */
+    public function serverError(): bool
+    {
+        return $this->status() >= 500;
     }
 
 

@@ -17,5 +17,4 @@ class PendingRequest extends AbstractPendingRequest
         $this->command  = $request->getCommand();
     }
 
-
 }

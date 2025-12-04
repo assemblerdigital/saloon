@@ -13,7 +13,7 @@ use Saloon\Contracts\Sender;
 use Saloon\Exceptions\Request\FatalRequestException;
 
 
-class LaravelSender implements Sender
+class LaravelProcessSender implements Sender
 {
     public function send(PendingRequest $pendingRequest): Response
     {

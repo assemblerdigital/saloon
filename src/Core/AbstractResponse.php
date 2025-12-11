@@ -110,6 +110,8 @@ abstract class AbstractResponse implements Response
      */
     abstract public function status(): int;
 
+    abstract public function statusMessage(): ?string;
+
     /**
      * Get the original sender exception
      */

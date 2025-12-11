@@ -5,6 +5,7 @@ namespace Saloon\Shell;
 use Illuminate\Contracts\Process\ProcessResult;
 use Saloon\Contracts\PendingRequest;
 use Saloon\Core\AbstractResponse;
+use Symfony\Component\Process\Process;
 use Throwable;
 
 
@@ -37,6 +38,11 @@ class Response extends AbstractResponse
     public function status(): int
     {
         return $this->processResponse->exitCode();
+    }
+
+    public function statusMessage(): string
+    {
+        return Process::$exitCodes[$this->status()] ?? 'Unknown Status Code';
     }
 
     public function body(): string

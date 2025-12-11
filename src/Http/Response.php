@@ -112,6 +112,11 @@ class Response extends AbstractResponse implements HttpResponse
         return $this->psrResponse->getStatusCode();
     }
 
+    public function statusMessage(): ?string
+    {
+        return $this->psrResponse->getReasonPhrase() ?: null;
+    }
+
     /**
      * Determine if the request was successful.
      */

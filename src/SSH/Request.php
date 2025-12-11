@@ -1,6 +1,6 @@
 <?php
 
-namespace Saloon\Shell;
+namespace Saloon\SSH;
 
 use Saloon\Core\AbstractRequest;
 use Saloon\Traits\Commands\HasCommand;

@@ -30,7 +30,7 @@ trait HasCustomPendingRequests
      */
     public function resolvePendingRequestClass(): ?string
     {
-        if (class_exists($this->pendingRequest)) {
+        if ($this->pendingRequest && class_exists($this->pendingRequest)) {
             return $this->pendingRequest;
         }
 

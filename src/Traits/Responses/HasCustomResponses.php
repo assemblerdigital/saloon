@@ -29,7 +29,7 @@ trait HasCustomResponses
      */
     public function resolveResponseClass(): ?string
     {
-        if (class_exists($this->response)) {
+        if ($this->response && class_exists($this->response)) {
             return $this->response;
         }
 

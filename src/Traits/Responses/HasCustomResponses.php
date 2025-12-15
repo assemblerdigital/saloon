@@ -7,6 +7,13 @@ namespace Saloon\Traits\Responses;
 trait HasCustomResponses
 {
     /**
+     * Specify a default PendingRequest.
+     *
+     * @var class-string<\Saloon\Contracts\PendingRequest>|null
+     */
+    protected ?string $defaultResponse = null;
+
+    /**
      * Specify a default response.
      *
      * When null or an empty string, the response on the sender will be used.
@@ -22,13 +29,10 @@ trait HasCustomResponses
      */
     public function resolveResponseClass(): ?string
     {
-        // We are making the assumption that any alternate PendingRequest classes will exist in the same directory,
-        // and namespace as the Connector / Request, and that directory is in the App folder.
+        if (class_exists($this->response)) {
+            return $this->response;
+        }
 
-        $responseClass = ( str_starts_with(static::class, 'App\\') )
-            ? preg_replace('/(?:Connector|Request)$/', 'Response', static::class)
-            : null;
-
-        return $this->response ?? ($responseClass && class_exists($responseClass) ? $responseClass : null);
+        return $this->defaultResponse;
     }
 }

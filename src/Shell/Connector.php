@@ -9,7 +9,7 @@ abstract class Connector extends AbstractConnector
 {
     protected string $defaultSender = LaravelProcessSender::class;
 
-    protected ?string $pendingRequest = PendingRequest::class;
+    protected ?string $defaultPendingRequest = PendingRequest::class;
 
-    protected ?string $response = Response::class;
+    protected ?string $defaultResponse = Response::class;
 }

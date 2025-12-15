@@ -8,12 +8,13 @@ use Saloon\Traits\Auth\RequiresAuth;
 
 abstract class Connector extends AbstractConnector
 {
+
     use RequiresAuth;
     protected string $defaultSender = SpatieSSHSender::class;
 
-    protected ?string $pendingRequest = PendingRequest::class;
+    protected ?string $defaultPendingRequest = PendingRequest::class;
 
-    protected ?string $response = Response::class;
+    protected ?string $defaultResponse = Response::class;
 
     protected int $port = 22;
     abstract public function resolveHostname(): string;
